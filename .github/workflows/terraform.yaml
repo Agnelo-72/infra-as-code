@@ -1,4 +1,4 @@
-name: Terrraform-cicd-pipeline
+name: Terraform-cicd-pipeline
 
 on:
   workflow_dispatch:   #to allow manual trigger of the workflow
@@ -27,7 +27,7 @@ jobs:
       - name: "Configure AWS Credentials" Action for GitHub Actions
         uses: aws-actions/configure-aws-credentials@v6.3.0
         with:
-          role-to-assume: arn:aws:iam::635096816538:role/GitHubInfraRole
+          role-to-assume: arn:aws:iam::635096816538:role/GitHubInfraRole   #configura o role do IAM que o GitHub Actions vai assumir para executar os comandos do Terraform
           aws-region: us-east-1
 
       - name: HashiCorp - Setup Terraform     
@@ -44,6 +44,6 @@ jobs:
 
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
-        if: github.event.input.apply == 'true'  #apenas executa o apply se o input do workflow for true
+        if: github.event.inputs.apply == 'true'  #apenas executa o apply se o input do workflow for true
 
 
