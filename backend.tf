@@ -2,7 +2,7 @@
 terraform {
   backend "s3" {
     bucket = "terraform-state-agnelo" 
-    key    = "site02/terraform.tfstate"        #caminho do arquivo de estado
+    key    = "site/terraform.tfstate"        #caminho do arquivo de estado
     region = "us-east-1"  
     encrypt = "true"                         #encriptar os dados
     use_lockfile = "true"                    #usar bloqueio de estado para evitar alterações simultâneas
