@@ -3,7 +3,7 @@ name: Terrraform-cicd-pipeline
 on:
   workflow_dispatch:   #to allow manual trigger of the workflow
     inputs:
-      logLevel:
+      apply:
         description: 'Executar o terraform apply?'
         required: true
         default: 'false'
