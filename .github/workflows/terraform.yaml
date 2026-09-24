@@ -24,7 +24,7 @@ jobs:
       - name: Checkout 
         uses: actions/checkout@v7.0.1
       
-      - name: "Configure AWS Credentials" Action for GitHub Actions
+      - name: "Configure AWS Credentials" 
         uses: aws-actions/configure-aws-credentials@v6.3.0
         with:
           role-to-assume: arn:aws:iam::635096816538:role/GitHubInfraRole   #configura o role do IAM que o GitHub Actions vai assumir para executar os comandos do Terraform
