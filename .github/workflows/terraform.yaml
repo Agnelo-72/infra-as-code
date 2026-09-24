@@ -1,4 +1,4 @@
-name: Terraform-cicd-pipeline
+name: Terraform CI/CD
 
 on:
   workflow_dispatch:   #to allow manual trigger of the workflow
