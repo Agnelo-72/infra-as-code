@@ -12,6 +12,24 @@ on:
           - true
           - false
 
+      destroy:
+        description: 'Destuir o ambiente?'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - true
+          - false
+
+      plan_destroy:
+        description: 'Planear a destruição do ambiente?'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - true
+          - false
+
 permissions:
   id-token: write
   contents: read        #importante: permite que o job acesse o repositório (infra-as-code) para fazer checkout do código
@@ -40,10 +58,17 @@ jobs:
         run: terraform validate
 
       - name: Terraform Plan
-        run: terraform plan -out=tfplan
+        run: terraform plan -out=tfplan.tfout
 
       - name: Terraform Apply
-        run: terraform apply -auto-approve tfplan
-        if: github.event.inputs.apply == 'true'  #apenas executa o apply se o input do workflow for true
+        run: terraform apply -auto-approve tfplan.tfout
+        if: github.event.inputs.apply == 'true'                 #apenas executa o apply se o input do workflow for true
 
+      - name: Terraform Plan Destroy
+        run: terraform plan -destroy -out=tfplan.tfout          #usar -out para salvar o plano de destruição em um arquivo
+        if: github.event.inputs.plan_destroy == 'true'
+
+      - name: Terraform Destroy
+        run: terraform apply -destroy -auto-approve tfplan.tfout
+        if: github.event.inputs.destroy == 'true'              #apenas destroi se o input do workflow for true
 
