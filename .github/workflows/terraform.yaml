@@ -21,7 +21,7 @@ on:
         default: false
         type: boolean
 
-permissions:                #importante para o OIDC funcionar e permitir que o GitHub Actions assuma a role do AWS
+permissions:                #important! para o OIDC funcionar e permitir que o GitHub Actions assuma a role do AWS
   id-token: write
   contents: read
 
