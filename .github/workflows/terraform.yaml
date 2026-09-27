@@ -62,10 +62,10 @@ jobs:
 
       # --- SECURITY CHECKS (SAST) ---
       - name: Checkov GitHub Action
-        uses: bridgecrewio/checkov-action@v3
+        uses: bridgecrewio/checkov-action@v12.1347.0
         with:
           framework: terraform
-          output_format: cli,sarif 
+          output_format: sarif 
           output_file_path: console,results.sarif
           soft_fail: true            #Not fail the workflow if Checkov finds issues, just report them
 
