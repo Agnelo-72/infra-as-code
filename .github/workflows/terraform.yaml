@@ -11,9 +11,9 @@ on:
         options:
           - true
           - false
-
-      destroy:
-        description: 'Destuir o ambiente?'
+      
+      plan_destroy:
+        description: 'Planear a destruição do ambiente?'
         required: true
         default: 'false'
         type: choice
@@ -21,8 +21,8 @@ on:
           - true
           - false
 
-      plan_destroy:
-        description: 'Planear a destruição do ambiente?'
+      destroy:
+        description: 'Destuir o ambiente?'
         required: true
         default: 'false'
         type: choice
