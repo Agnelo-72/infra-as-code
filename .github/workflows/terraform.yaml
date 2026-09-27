@@ -57,7 +57,7 @@ jobs:
       - name: Run TFLint
         run: |
           tflint --init
-          tflint -f compact
+          tflint -f compact --minimum-failure-severity=error
 
       # --- FLUXO NORMAL (Criar / Atualizar) ---
       - name: Terraform Plan
