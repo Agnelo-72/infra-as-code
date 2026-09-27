@@ -24,6 +24,7 @@ on:
 permissions:                #important! para o OIDC funcionar e permitir que o GitHub Actions assuma a role do AWS
   id-token: write
   contents: read
+  security-events: write    #ncessary for the checkov upload sarif results to github security tab
 
 jobs:
   job1:
@@ -58,6 +59,22 @@ jobs:
         run: |
           tflint --init
           tflint -f compact --minimum-failure-severity=error
+
+      # --- SECURITY CHECKS (SAST) ---
+      - name: Checkov GitHub Action
+        uses: bridgecrewio/checkov-action@v12.1347.0 
+        with:
+          framework: terraform
+          output_format: cli,sarif 
+          output_file_path: console,results.sarif
+          soft_fail: true            #Not fail the workflow if Checkov finds issues, just report them
+
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v2
+        if: always()
+        with:
+          sarif_file: results.sarif
+
 
       # --- FLUXO NORMAL (Criar / Atualizar) ---
       - name: Terraform Plan
