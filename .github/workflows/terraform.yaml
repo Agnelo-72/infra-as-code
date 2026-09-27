@@ -66,7 +66,7 @@ jobs:
         with:
           framework: terraform
           output_format: sarif 
-          output_file_path: console,results.sarif
+          output_file_path: results.sarif
           soft_fail: true            #Not fail the workflow if Checkov finds issues, just report them
 
       - name: Upload SARIF file
