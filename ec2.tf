@@ -6,6 +6,8 @@ resource "aws_instance" "website_server" {
   vpc_security_group_ids = [aws_security_group.website_sh.id]   #IDs dos grupos de segurança associados à instância
   iam_instance_profile   = "ECR-EC2-Role"                       #Nome do perfil (ROLE) de instância criado no console da AWS
 
+  user_data = file("user_data.sh")  #Script to install Docker and run the container
+
 
   #corrections to error finded by Checkov:
   ebs_optimized = true   
