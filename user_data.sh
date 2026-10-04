@@ -9,4 +9,5 @@ yum install docker -y
 systemctl enable docker
 systemctl start docker
 usermod -a -G docker ec2-user
-
+systemctl enable amazon-ssm-agent
+systemctl start amazon-ssm-agent
