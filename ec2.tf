@@ -10,15 +10,7 @@ resource "aws_instance" "website_server" {
 
 
   #corrections to error finded by Checkov:
-  ebs_optimized = true   
-  monitoring = true
-  metadata_options {
-    http_tokens = "required"
-    http_endpoint = "enabled"
-  }
-  root_block_device {
-    encrypted = true
-  }
+  
 
 
 
