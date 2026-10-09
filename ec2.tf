@@ -85,7 +85,7 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_outbound" {
 
 
 # Allow Prometheus Metrics from my computer IP
-resource "aws_vpc_security_goup_ingress_rule" "allow_node_exporter" {
+resource "aws_vpc_security_group_ingress_rule" "allow_node_exporter" {
   security_group_id = aws_security_group.website_sh.id
 
   cidr_ipv4   = "0.0.0.0/0"              #Alert! devia ser apenas o IP do meu computador, abri para qualquer lugar por enquanto, mas não é seguro.
