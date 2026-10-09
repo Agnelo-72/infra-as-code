@@ -44,7 +44,7 @@ resource "aws_security_group" "website_sh" {
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
   security_group_id = aws_security_group.website_sh.id
 
-  cidr_ipv4   = "0.0.0.0/0"          #devia ser apenas o IP do meu computador, abri para qualquer lugar por enquanto, mas não é seguro.
+  cidr_ipv4   = "0.0.0.0/0"          #Alert! devia ser apenas o IP do meu computador, abri para qualquer lugar por enquanto, mas não é seguro.
   from_port   = 22
   ip_protocol = "tcp"
   to_port     = 22
@@ -81,3 +81,15 @@ resource "aws_vpc_security_group_egress_rule" "allow_all_outbound" {
   ip_protocol = -1          #Permitir todos os protocolos
 }
 
+
+
+
+# Allow Prometheus Metrics from my computer IP
+resource "aws_vpc_security_goup_ingress_rule" "allow_node_exporter" {
+  security_group_id = aws_security_group.website_sh.id
+
+  cidr_ipv4   = "0.0.0.0/0"              #Alert! devia ser apenas o IP do meu computador, abri para qualquer lugar por enquanto, mas não é seguro.
+  from_port = 9100
+  ip_protocol = "tcp"
+  to_port = 9100
+}
